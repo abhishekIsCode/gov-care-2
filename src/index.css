@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:wght@400;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  
+  --color-forest-950: #042f2e;
+  --color-forest-900: #134e4a;
+  --color-forest-800: #115e59;
+  --color-sage-500: #84cc16;
+  --color-mint-500: #10b981;
+}
+
+body {
+  @apply bg-stone-50 text-stone-800 font-sans tracking-wide;
+}
+
+/* QR Scanner Overrides */
+#qr-reader {
+  border: none !important;
+  background: transparent !important;
+}
+
+#qr-reader__dashboard_section_csr button {
+  @apply bg-teal-500 hover:bg-teal-400 text-white font-medium py-2 px-4 rounded-lg border-none transition-colors cursor-pointer text-sm mt-4;
+}
+
+#qr-reader__status_span {
+  @apply text-teal-600 text-xs font-medium mt-2 block;
+}
+
+#qr-reader img {
+  display: none;
+}
+
+video {
+  border-radius: 0.75rem !important;
+}

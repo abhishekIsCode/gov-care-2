@@ -1,0 +1,9 @@
+{
+  "name": "Gov Health Portal",
+  "description": "A secure national health repository for managing records, clinical timelines, and AI-powered health navigation. Features multi-modal identity verification using QR and AI photo analysis.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": []
+}

@@ -1,0 +1,91 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Government health portal user profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "fullName": { "type": "string" },
+        "healthId": { "type": "string" },
+        "dateOfBirth": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["citizen", "doctor", "admin"] },
+        "specialization": { "type": "string" },
+        "associatedHospitalId": { "type": "string" },
+        "isVerified": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "fullName", "role"]
+    },
+    "HealthRecord": {
+      "title": "Health Record",
+      "description": "Clinical timeline entry",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "facilityName": { "type": "string" },
+        "facilityId": { "type": "string" },
+        "doctorId": { "type": "string" },
+        "doctorName": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "diagnosis": { "type": "string" },
+        "medications": { "type": "string" },
+        "notes": { "type": "string" },
+        "type": { "type": "string", "enum": ["Checkup", "Surgery", "Lab Result", "Prescription", "Specialist Visit"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "facilityName", "date", "type"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Scheduled medical visit",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string" },
+        "patientName": { "type": "string" },
+        "doctorId": { "type": "string" },
+        "doctorName": { "type": "string" },
+        "facilityId": { "type": "string" },
+        "facilityName": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "completed", "cancelled"] },
+        "diagnosisRecommendation": { "type": "string" },
+        "reason": { "type": "string" }
+      },
+      "required": ["patientId", "doctorId", "date", "status"]
+    },
+    "Facility": {
+      "title": "Health Facility",
+      "description": "Government health facility information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "address": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" }
+      },
+      "required": ["name", "type", "address"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile data"
+    },
+    "/users/{userId}/records/{recordId}": {
+      "schema": "HealthRecord",
+      "description": "User's collection of clinical records"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Medical appointments"
+    },
+    "/facilities/{facilityId}": {
+      "schema": "Facility",
+      "description": "Public directory of health facilities"
+    }
+  }
+}
